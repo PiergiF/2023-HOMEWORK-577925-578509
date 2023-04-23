@@ -1,16 +1,9 @@
 package it.uniroma3.diadia;
 
-/**
- * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
- * Per giocare crea un'istanza di questa classe e invoca il letodo gioca
- *
- * Questa e' la classe principale crea e istanzia tutte le altre
- *
- * @author  docente di POO 
- *         (da un'idea di Michael Kolling and David J. Barnes) 
- *          
- * @version base
- */
+import it.uniroma3.diadia.comandi.Comando;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+
+
 
 public class DiaDia {
 
@@ -24,72 +17,49 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
-
+	private IO io;
 	private Partita partita;
 
-	public DiaDia() {
+	public DiaDia(IO console) {
+		this.io = console;
 		this.partita = new Partita();
+		
 	}
 
-	public void gioca(IOConsole console) {
+	public void gioca() {
 		String istruzione;
 
-		console.mostraMessaggio(MESSAGGIO_BENVENUTO);
+		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
 		
-		console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-		console.mostraMessaggio(partita.getGiocatore().getDescrizione());
-		console.mostraMessaggio(partita.getGiocatore().getBorsa().getDescrizione());
+		io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
+		io.mostraMessaggio(partita.getGiocatore().getDescrizione());
+		io.mostraMessaggio(partita.getGiocatore().getBorsa().getDescrizione());
 		do 	
-			istruzione = console.leggiRiga();
-		while (!processaIstruzione(istruzione,console));
+			istruzione = io.leggiRiga();
+		while (!processaIstruzione(istruzione));
 	}
 	
-	/**
-	 * Processa una istruzione 
-	 *
-	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
-	 */
-	private boolean processaIstruzione(String istruzione, IOConsole console) {
-		Comando comandoDaEseguire = new Comando(istruzione,partita);
-		 
-		if (comandoDaEseguire.getNome().equals("fine")) {
-			comandoDaEseguire.fine(console); 
-			return true;
-		} 
-		else if (comandoDaEseguire.getNome().equals("vai")) {
-			comandoDaEseguire.vai(console);}
-		
-		else if (comandoDaEseguire.getNome().equals("aiuto"))
-			comandoDaEseguire.aiuto(console);
-		else if (comandoDaEseguire.getNome().equals("prendi"))
-			comandoDaEseguire.raccogliAttrezzo(console);
-		else if (comandoDaEseguire.getNome().equals("posa"))
-			comandoDaEseguire.posaAttrezzo(console);
-		else
-			console.mostraMessaggio("Comando sconosciuto");
-		
-		console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-		console.mostraMessaggio(partita.getGiocatore().getDescrizione());
-		console.mostraMessaggio(partita.getGiocatore().getBorsa().getDescrizione());
-		
-		
-		if (partita.isFinita()) {
-			if (partita.vinta()) {
-				console.mostraMessaggio("Hai vinto!");
-				comandoDaEseguire.fine(console);
-			}
-			else {
-				console.mostraMessaggio("Hai perso, sono finiti i tuoi cfu :(");
-				comandoDaEseguire.fine(console);
-			}
-			return true;
-		}else
-			return false;
+	public boolean processaIstruzione(String Istruzione) {
+
+		Comando nuovoComando;
+		FabbricaDiComandiFisarmonica fabbrica = new FabbricaDiComandiFisarmonica(this.io);
+		nuovoComando = fabbrica.costruisciComando(Istruzione);
+		nuovoComando.esegui(this.partita);	
+		if(this.partita.vinta())
+			io.mostraMessaggio("HAI VINTO NEGRO!!!");
+			
+		if (this.partita.getGiocatore().getCfu()==0)
+			io.mostraMessaggio("SEI STIRATO ");
+			
+		return this.partita.isFinita();
 	}
 	
+	
+	
+
 	public static void main(String[] argc) {
-		IOConsole console = new IOConsole();
-		DiaDia gioco = new DiaDia();
-		gioco.gioca(console);
+		IO console = new IOConsole();
+		DiaDia gioco = new DiaDia(console);
+		gioco.gioca();
 	}
 }
