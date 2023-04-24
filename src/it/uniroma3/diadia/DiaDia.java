@@ -46,7 +46,7 @@ public class DiaDia {
 		nuovoComando = fabbrica.costruisciComando(Istruzione);
 		nuovoComando.esegui(this.partita);	
 		if(this.partita.vinta())
-			io.mostraMessaggio("HAI VINTO NEGRO!!!");
+			io.mostraMessaggio("HAI VINTO !!!");
 			
 		if (this.partita.getGiocatore().getCfu()==0)
 			io.mostraMessaggio("SEI STIRATO ");
