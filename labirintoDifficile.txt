@@ -1,0 +1,11 @@
+Stanze: biblioteca, N10, N11, campus, N3, segreteria, ufficio
+Inizio: N11
+Vincente: campus
+Bloccate: aula_magna nord chiavi, rettorato sud laurea
+Buie: sgabuzzino torcia pinza
+Magiche: parcheggio 5
+Attrezzi: martello 10 biblioteca, pinza 2 N10, osso 2 ufficio, chiavi 2 sgabuzzino, laurea 1 segreteria, carne 4 rettorato
+Mago: Bugo bacchetta 2 segreteria
+Strega: Nistrid N3
+Cane: Bob forbice 2 biblioteca
+Uscite: biblioteca nord N10, biblioteca sud N3, biblioteca est parcheggio, biblioteca ovest segreteria, aula_magna nord ufficio, aula_magna ovest rettorato, N11 nord N10, N11 est N3, N3 sud sgabuzzino, rettorato sud campus

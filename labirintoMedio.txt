@@ -1,0 +1,11 @@
+Stanze: biblioteca, N10, N11, campus, segreteria
+Inizio: N10
+Vincente: N11
+Bloccate: bloccata nord chiavi
+Buie: buia torcia pinza
+Magiche: magica 4
+Attrezzi: martello 10 biblioteca, pinza 2 N10
+Mago: Bugo bacchetta 2 biblioteca
+Strega: Nistrid segreteria
+Cane: Bob forbice 2 N10
+Uscite: biblioteca nord N10, biblioteca sud N11, biblioteca est campus, campus nord segreteria, campus sud magica
