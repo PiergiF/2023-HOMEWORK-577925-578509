@@ -10,9 +10,9 @@ import it.uniroma3.diadia.Partita;
 
 public class Strega extends AbstractPersonaggio {
 	private static final String MESSAGGIO_SALUTATO = "Che avventuriero gentile, per contraccambiare ti sposterò nella stanza con più attrezzi qui vicino\n"+
-													 "Stai bene, ti senti stranito, ma la strega ha rispettato la promessa, c'è molto bottino per terra!";
+													 "...Stai bene, ti senti stranito, ma la strega ha rispettato la promessa, c'è molto bottino per terra!";
 	private static final String MESSAGGIO_NON_SALUTATO = "Che maleducato, neanche si saluta più?\n" + 
-														 "Dopo un attimo di stordimento ti risvegli in una stanza diversa. Stai bene, ma purtroppo non c'è molto da prendere...";
+														 "...Dopo un attimo di stordimento ti risvegli in una stanza diversa. Stai bene, ma purtroppo non c'è molto da prendere...";
 	private static final String MESSAGGIO_REGALO = "AHAHAHAHAH, grazie mille avventuriero! \n La strega prende l'oggetto, chissà se lo rivedrai mai...";
 	private Attrezzo attrezzo;
 	private List <Stanza> listStanzeAdiacenti;
@@ -53,6 +53,8 @@ public class Strega extends AbstractPersonaggio {
 					sMin = listStanzeAdiacenti.get(i);
 					attrMin = listStanzeAdiacenti.get(i).getNumeroAttrezzi();
 				}
+				i++;
+				it.next();
 			}
 			partita.setStanzaCorrente(sMin);
 			msg = MESSAGGIO_NON_SALUTATO;
