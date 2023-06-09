@@ -67,22 +67,7 @@ public class DiaDia {
 		try (Scanner scanner = new Scanner(System.in)){
 			IO console = new IOConsole(scanner);
 			MenuDifficolta difficolta = new MenuDifficolta(console);
-			//E se invocassi new Labirinto che invoca new LabirintoBuilder e CaricatoreLabirinto?
-			//Labirinto labirinto = new LabirintoBuilder(difficolta.scegliDifficolta()).getLabirinto();
-					/*.addStanzaIniziale("inizio")
-					.addStanza("in_mezzo")
-					.addAttrezzo("spada", 4)
-					.addAdiacenza("inizio","in_mezzo" ,"sud" )
-					.addStanzaMagica("magica", 3)
-					.addAdiacenza("inizio","magica" ,"est" )
-					.addStanzaBloccata("bloccata", "ovest", "spada")
-					.addAdiacenza("inizio","bloccata" ,"ovest")
-					.addStanzaVincente("fine")
-					.addAdiacenza("inizio", "fine", "nord")
-					.addAdiacenza("bloccata", "fine", "ovest")
-					.getLabirinto();*/
 			Labirinto labirinto = new Labirinto(difficolta.scegliDifficolta());
-			//Labirinto labirinto =  Labirinto.newBuilder(difficolta.scegliDifficolta()).getLabirinto();
 			DiaDia gioco = new DiaDia(console,labirinto);
 			gioco.gioca();
 		}
